@@ -13,4 +13,26 @@
 <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NF3DNMS"
   height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   <!-- End Google Tag Manager (noscript) -->
+  (() => {
+  l = s => s == undefined ? "" : s ? "granted" : "denied";
+  c = s => s == "granted" ? "color: #29b6f6": "color: #C00"; 
+ 
+  if (!"google_tag_data" in window) {
+   console.log("No Consent Mode data found.");
+   return;
+ }
+ 
+  var g = google_tag_data.ics.entries, i = "", t = "", u = "";
+  
+  for (var a in g) {
+   i = l(g[a]['initial']);
+   u = l(g[a]['update']);
+   if (i == "" && u == "") continue;
+   t = ("\t" + a + ":" + 
+    (i != "" ? "\n\t\tDefault: %c" + i : "%c") + "%c" +
+   (u != "" ? "\n\t\tUpdate: %c" + u : "%c")); 
+   console.log(t, i != "" ? c(i) : "", "", u != "" ? c(u) : "", "");
+ }
+  if (i == "") console.log("No default Consent settings found.");
+})()
 </body>
